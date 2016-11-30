@@ -1,15 +1,20 @@
 var consul = require('consul')({ host: 'consul' })
 consul.catalog.service.list(function (err, result) {
-  if (err) throw err
+  if (err) {
+    console.log("consul service discovery unavailable")
+  }
   console.log('services found: ' + result)
 })
-var mysqlHost;
-var mysqlPort;
+var mysqlHost = '127.0.0.1';
+var mysqlPort = '3306';
 consul.catalog.service.nodes('mysql', function (err, result) {
-  if (err) throw err
-  console.log('mysql found: ' + JSON.stringify(result))
-  mysqlHost = result[0].ServiceAddress
-  mysqlPort = result[0].ServicePort
+  if (err) {
+    console.log("no service discovery, using default settings for mySql");
+  } else {
+    console.log('mysql found: ' + JSON.stringify(result))
+    mysqlHost = result[0].ServiceAddress
+    mysqlPort = result[0].ServicePort
+  }
   console.log('using mysql @ ' + mysqlHost + ':' + mysqlPort)
 })
 
