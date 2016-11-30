@@ -4,6 +4,6 @@ machine:
 
 test:
   override:
-    - docker-compose run web npm run cover
+    - docker-compose version #run web npm run cover
   post:
     - docker-compose run web cat test-results.xml | $CIRCLE_TEST_REPORTS/junit/test-results.xml
