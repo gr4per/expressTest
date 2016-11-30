@@ -64,5 +64,10 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 app.locals.title = 'expressTest'
+function someFunction(input) {
+  console.log("someFunction:" + input)
+  return input
+}
+app.someFunction = someFunction
 console.log('init done')
 module.exports = app
