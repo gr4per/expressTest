@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>I'm in a React app!</title>
+  </head>
+  <body>
+    <div id="react-app"></div>
+
+    <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"></script>
+    <script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"></script>
+  </body>
+  <script>
+    var contacts = [
+      {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
+      {key: 2, name: "Jim", email: "jim@example.com"},
+      {key: 3, name: "Joe"},
+    ]
+
+    var newContact = {name: "", email: "", description: ""}
+
+    var ContactItem = React.createClass({
+        propTypes: {
+          name: React.PropTypes.string.isRequired,
+          email: React.PropTypes.string,
+          description: React.PropTypes.string,
+        },
+        render: function() {
+          var liMembers = []
+          liMembers.push(React.createElement('h2', {className: 'Contact-name'}, this.props.name))
+          if(this.props.email) {
+            liMembers.push(React.createElement('a', {href: 'mailto:' + this.props.email}, this.props.email))
+          }
+          if(this.props.description) {
+            liMembers.push(React.createElement('p', {}, this.props.description))
+          }
+
+          return (
+            React.createElement('li', {key: this.props.name, className: 'Contact'}, liMembers)
+          )
+        }
+    })
+
+    var ContactForm = React.createClass({
+      propTypes: {
+        contact: React.PropTypes.object.isRequired,
+        onChange: React.PropTypes.func.isRequired
+      },
+      render: function() {
+        return (
+          React.createElement('form', {action: '/'},
+            React.createElement('label', {htmlFor: 'contactName'}, 'Name'),
+            React.createElement('input', {id: 'contactName', type: 'text', placeholder: 'Name (required)', value: this.props.contact.name, onChange:function(synthEvent){
+              console.log('text changed: ' +  synthEvent.target.value)
+              this.props.onChange(Object.assign({}, this.props.contact, {name:synthEvent.target.value}))
+            }.bind(this)}),
+            React.createElement('br', {}),
+            React.createElement('label', {htmlFor: 'contactEmail'}, 'Email'),
+            React.createElement('input', {id: 'contactEmail', type: 'text', placeholder: 'Email', value: this.props.contact.email}),
+            React.createElement('br', {}),
+            React.createElement('label', {htmlFor: 'contactDesc'}, 'Description'),
+            React.createElement('textarea', {id: 'contactDesc', cols:'25', rows:'2', placeholder: 'Description', value: this.props.contact.description}),
+            React.createElement('br', {}),
+            React.createElement('input', {id: 'contactSubmit', type: 'button', value: 'Add'})
+          )
+        )
+      }
+    })
+
+    var ContactView = React.createClass({
+      propTypes: {
+        contacts: React.PropTypes.array.isRequired,
+        newContact: React.PropTypes.object.isRequired,
+        onContactChange: React.PropTypes.func.isRequired,
+      },
+      render: function() {
+        console.log('rendering ContactView')
+
+        return (
+          React.createElement('div', {},
+            React.createElement('h1', {}, "Contacts"),
+            React.createElement('ul', {},
+              this.props.contacts
+            ),
+            React.createElement(ContactForm, {
+              contact:this.props.newContact,
+              onChange:function(contact){
+                console.log(contact)
+                newContact = contact
+                this.props.onContactChange(newContact)
+              }.bind(this)
+            })
+         )
+        )
+      }
+    })
+
+    var occ = function(newContact) {
+      var rootElement =  React.createElement(ContactView, {
+        onContactChange: occ,
+        contacts:contacts.filter(function(it){return it.email})
+          .map(function(it) {return React.createElement(ContactItem, it)}),
+        newContact: newContact}
+      )
+      ReactDOM.render(rootElement, document.getElementById('react-app'))
+    }
+
+    var rootElement =  React.createElement(ContactView, {
+      contacts:contacts.filter(function(it){return it.email})
+        .map(function(it) {return React.createElement(ContactItem, it)}),
+      newContact: newContact,
+      onContactChange: occ
+      }
+    )
+    ReactDOM.render(rootElement, document.getElementById('react-app'))
+  </script>
+</html>
