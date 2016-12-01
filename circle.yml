@@ -10,7 +10,7 @@ test:
     - docker-compose run -rm=false web npm run cover
   post:
     - mkdir sudo $CIRCLE_TEST_REPORTS/junit
-    - touch sudo $CIRCLE_TEST_REPORTS/junit/test-results.xml
     - ls -l $CIRCLE_TEST_REPORTS/junit/test-results.xml
     - pwd
-    - sudo docker-compose run web cat test-results.xml | $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - docker-compose run web cat test-results.xml > ./test-results.xml
+    - cp test-results.xml $CIRCLE_TEST_REPORTS/junit
