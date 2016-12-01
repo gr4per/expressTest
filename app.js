@@ -12,8 +12,10 @@ consul.catalog.service.nodes('mysql', function (err, result) {
     console.log("no service discovery, using default settings for mySql");
   } else {
     console.log('mysql found: ' + JSON.stringify(result))
-    mysqlHost = result[0].ServiceAddress
-    mysqlPort = result[0].ServicePort
+    if(result[0]) {
+      mysqlHost = result[0].ServiceAddress
+      mysqlPort = result[0].ServicePort
+    }
   }
   console.log('using mysql @ ' + mysqlHost + ':' + mysqlPort)
 })
