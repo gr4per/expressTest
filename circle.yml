@@ -21,6 +21,6 @@ deployment:
   hub:
     branch: master
     commands:
-      - ping hub.docker.com
+      - lookup hub.docker.com
       - docker login -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com
       - docker push gr4per/expresstest
