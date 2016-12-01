@@ -5,15 +5,15 @@ machine:
   services:
     - docker
 
+dependencies:
+  override:
+    - docker info
+    - docker build --rm=false -t gr4per/expresstest .
+
 test:
   override:
     - docker-compose run web npm run cover
   post:
     - sudo mkdir $CIRCLE_TEST_REPORTS/junit
-    - pwd
-    - cat test-results.xml
-    - docker-compose run web ls -l
-    - cat test-results.xml
     - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
-    - echo "listing $CIRCLE_TEST_REPORTS/junit:"
-    - ls -l $CIRCLE_TEST_REPORTS/junit
+    
