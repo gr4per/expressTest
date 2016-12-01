@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0" tests="2" failures="0">
-  <testsuite name="Root Suite" timestamp="2016-11-30T15:18:11" tests="0" failures="0" time="0">
+<testsuites name="Mocha Tests" time="0.002" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2016-11-30T16:44:04" tests="0" failures="0" time="0">
   </testsuite>
-  <testsuite name="app" timestamp="2016-11-30T15:18:11" tests="1" failures="0" time="0">
-    <testcase name="app should return title expressTest" time="0" classname="should return title expressTest">
+  <testsuite name="app" timestamp="2016-11-30T16:44:04" tests="1" failures="0" time="0.001">
+    <testcase name="app should return title expressTest" time="0.001" classname="should return title expressTest">
     </testcase>
   </testsuite>
-  <testsuite name="app" timestamp="2016-11-30T15:18:11" tests="0" failures="0" time="0">
+  <testsuite name="app" timestamp="2016-11-30T16:44:04" tests="0" failures="0" time="0">
   </testsuite>
-  <testsuite name="someFunction" timestamp="2016-11-30T15:18:11" tests="1" failures="0" time="0">
-    <testcase name="app someFunction should return its input" time="0" classname="should return its input">
+  <testsuite name="someFunction" timestamp="2016-11-30T16:44:04" tests="1" failures="0" time="0.001">
+    <testcase name="app someFunction should return its input" time="0.001" classname="should return its input">
     </testcase>
   </testsuite>
 </testsuites>

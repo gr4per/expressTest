@@ -1,0 +1,5 @@
+[Service]
+Environment="HTTP_PROXY=http://172.16.154.10:3128/"
+Environment="HTTPS_PROXY=https://172.16.154.10:3128/"
+Environment="NO_PROXY=localhost,127.0.0.1,localaddress,.localdomain.com"
+

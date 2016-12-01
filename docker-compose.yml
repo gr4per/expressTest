@@ -29,9 +29,9 @@ services:
   web:
     build:
       context: .
-      args:
-        HTTP_PROXY: "http://172.16.154.10:3128" 
-        HTTPS_PROXY: "http://172.16.154.10:3128"
+#      args:
+#        HTTP_PROXY: "http://172.16.154.10:3128" 
+#        HTTPS_PROXY: "http://172.16.154.10:3128"
     volumes:
       - .:/app
       - /app/node_modules
