@@ -11,4 +11,6 @@ test:
   post:
     - mkdir sudo $CIRCLE_TEST_REPORTS/junit
     - touch sudo $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - ls -l $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - pwd
     - sudo docker-compose run web cat test-results.xml | $CIRCLE_TEST_REPORTS/junit/test-results.xml
