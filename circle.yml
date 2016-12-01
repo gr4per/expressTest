@@ -21,6 +21,5 @@ deployment:
   hub:
     branch: master
     commands:
-      - lookup hub.docker.com
-      - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL hub.docker.com
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
       - docker push gr4per/expresstest
