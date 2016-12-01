@@ -7,8 +7,8 @@ machine:
 
 test:
   override:
-    - docker-compose run web npm run cover
+    - docker-compose run -rm=false web npm run cover
   post:
-    - mkdir $CIRCLE_TEST_REPORTS/junit
-    - touch $CIRCLE_TEST_REPORTS/junit/test-results.xml
-    - docker-compose run web cat test-results.xml | $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - mkdir sudo $CIRCLE_TEST_REPORTS/junit
+    - touch sudo $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    - sudo docker-compose run web cat test-results.xml | $CIRCLE_TEST_REPORTS/junit/test-results.xml
