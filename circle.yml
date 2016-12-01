@@ -6,14 +6,12 @@ machine:
     - docker
 
 test:
-  pre:
-    - docker-compose run web rm -rf coverage
   override:
     - docker-compose run web npm run cover
   post:
-    - mkdir sudo $CIRCLE_TEST_REPORTS/junit
+    - sudo mkdir $CIRCLE_TEST_REPORTS/junit
     - pwd
-    - sudo rm test-results.xml
+    - cat test-results.xml
     - docker-compose run web ls -l
     - docker-compose run web cat test-results.xml > ./test-results.xml
     - cat test-results.xml
