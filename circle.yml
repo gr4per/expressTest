@@ -11,5 +11,6 @@ test:
   post:
     - mkdir sudo $CIRCLE_TEST_REPORTS/junit
     - pwd
+    - sudo rm test-results.xml
     - docker-compose run web cat test-results.xml > ./test-results.xml
     - cp test-results.xml $CIRCLE_TEST_REPORTS/junit
