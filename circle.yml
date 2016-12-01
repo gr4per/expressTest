@@ -16,4 +16,10 @@ test:
   post:
     - sudo mkdir $CIRCLE_TEST_REPORTS/junit
     - sudo cp test-results.xml $CIRCLE_TEST_REPORTS/junit
-    
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push gr4per/expresstest
