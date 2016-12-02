@@ -10,7 +10,6 @@ WORKDIR /app
 #ADD ./package.json .
 ADD . .
 
-RUN env
 RUN if [ -z $HTTP_PROXY ]; then echo "proxy not set"; else echo "proxy set: $HTTP_PROXY"; fi
 RUN if [ -z $HTTP_PROXY ]; then npm config delete proxy; else npm config set proxy "$HTTP_PROXY"; fi
 RUN if [ -z $HTTPS_PROXY ]; then echo "https proxy not set"; else echo "https proxy set: $HTTPS_PROXY"; fi
