@@ -4,7 +4,8 @@
   "author": "agraeper",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/supervisor ./bin/www >> app_$(date +'%m%d%y').log",
+    "start" : "./bin/www",
+    "monitor" : "./node_modules/.bin/supervisor ./bin/www >> app_$(date +'%m%d%y').log",
     "test": "./node_modules/.bin/_mocha --reporter mocha-junit-reporter test",
     "mocha": "./node_modules/.bin/mocha --reporter mocha-junit-reporter",
     "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R mocha-junit-reporter test"
