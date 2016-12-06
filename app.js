@@ -71,5 +71,13 @@ function someFunction(input) {
   return input
 }
 app.someFunction = someFunction
+process.on('SIGINT', function() {
+  console.log('SIGINT received, stopping.')
+  process.exit();
+});
+process.on('SIGTERM', function() {
+  console.log('SIGTERM received, stopping.')
+  process.exit();
+});
 console.log('init done')
 module.exports = app
